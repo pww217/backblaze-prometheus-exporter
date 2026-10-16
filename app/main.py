@@ -218,9 +218,17 @@ def update_b2_metrics(b2_api: B2Api, config: dict) -> None:
     )
 
 def collection_loop(config: dict) -> None:
-    b2_api = init_b2(config['b2_app_key_id'], config['b2_app_key'])
+    b2_api = None
     while True:
-        update_b2_metrics(b2_api, config)
+        try:
+            if b2_api is None:
+                b2_api = init_b2(config['b2_app_key_id'], config['b2_app_key'])
+            update_b2_metrics(b2_api, config)
+        except (InvalidAuthToken, B2ConnectionError) as e:
+            b2_api = None
+            logger.warning("B2 error, will retry: %s", e)
+        except Exception as e:
+            logger.error("Unexpected error, will retry: %s", e)
         time.sleep(config['update_interval'])
 
 # --- WEB SERVER ---
