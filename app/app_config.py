@@ -13,7 +13,7 @@ ASSETS_DIR = BASE_DIR / "assets"
 # General information
 APP_AUTHOR = 't0mmili'
 APP_NAME = 'Backblaze Prometheus Exporter'
-APP_VERSION = '0.1.0'
+APP_VERSION = '0.2.0'
 
 # Assets
 B2_BUCKETS_SCHEMA_FILE = ASSETS_DIR / 'bucket-path-mapping.schema.json'
