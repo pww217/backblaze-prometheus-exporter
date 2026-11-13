@@ -43,7 +43,7 @@ wheels = [
 [[package]]
 name = "backblaze-prometheus-exporter"
 version = "0.2.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "b2sdk" },
     { name = "flask" },
